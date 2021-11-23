@@ -9,4 +9,60 @@
         <item>JPY</item>
         <item>KRW</item>
     </string-array>
+    <string-array name="eur">
+        <item>10,11 SEK</item>
+        <item>1,13 USD</item>
+        <item>0,84 GBP</item>
+        <item>7,19 CNY</item>
+        <item>129,24JPY</item>
+        <item>1338,22 KRW</item>
+    </string-array>
+    <string-array name="sek">
+        <item>0,099 EUR</item>
+        <item>0,11 USD</item>
+        <item>0,083 GBP</item>
+        <item>0,71 CNY</item>
+        <item>12,78 JPY</item>
+        <item>132,32 KRW</item>
+    </string-array>
+    <string-array name="usd">
+        <item>0,89 EUR</item>
+        <item>8,98 SEK</item>
+        <item>0,75 GBP</item>
+        <item>6,39 CNY</item>
+        <item>114,80 JPY</item>
+        <item>1188,60 KRW</item>
+    </string-array>
+    <string-array name="gbp">
+        <item>1,19 EUR</item>
+        <item>12,01 SEK</item>
+        <item>1,34 USD</item>
+        <item>8,54 CNY</item>
+        <item>153,50 JPY</item>
+        <item>1589.34 KRW</item>
+    </string-array>
+    <string-array name="cny">
+        <item>0,14 EUR</item>
+        <item>1,41 SEK</item>
+        <item>0,16 USD</item>
+        <item>0,12 GBP</item>
+        <item>17,97 JPY</item>
+        <item>186,07 KRW</item>
+    </string-array>
+    <string-array name="jpy">
+        <item>0,0077EUR</item>
+        <item>0,078SEK</item>
+        <item>0,0087 USD</item>
+        <item>0,0065 GBP</item>
+        <item>0,056 CNY</item>
+        <item>10,35 KRW</item>
+    </string-array>
+    <string-array name="krw">
+        <item>0,00075 EUR</item>
+        <item>0,0076 SEK</item>
+        <item>0,00084 USD</item>
+        <item>0,00063 GBP</item>
+        <item>0,0054 CNY</item>
+        <item>0,097 JPY</item>
+    </string-array>
 </resources>
