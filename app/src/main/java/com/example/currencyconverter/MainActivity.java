@@ -1,7 +1,6 @@
 package com.example.currencyconverter;
-import android.widget.Spinner;
+
 import android.os.Bundle;
-import android.widget.EditText;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -16,7 +15,6 @@ import com.example.currencyconverter.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
