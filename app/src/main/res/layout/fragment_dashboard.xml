@@ -58,11 +58,13 @@
                 android:text="USD"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
             <ListView
                 android:id="@+id/usdList"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:entries="@array/usd" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,6 +72,7 @@
                 android:text="GBP"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
             <ListView
                 android:id="@+id/gbpList"
                 android:layout_width="match_parent"
@@ -83,11 +86,13 @@
                 android:text="CNY"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
             <ListView
                 android:id="@+id/cnyList"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:entries="@array/cny" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,11 +100,13 @@
                 android:text="JPY"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
             <ListView
                 android:id="@+id/jpyList"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:entries="@array/jpy" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,6 +114,7 @@
                 android:text="KRW"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
             <ListView
                 android:id="@+id/krwList"
                 android:layout_width="match_parent"
