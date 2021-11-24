@@ -1,8 +1,7 @@
 package com.example.currencyconverter;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -255,4 +254,3 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
-
