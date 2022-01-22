@@ -1,126 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ScrollView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".ListActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ListView
+        android:background="@color/purple_200"
+        android:id="@+id/listview"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/black"
+        android:dividerHeight="5dp"
+        android:gravity="center"
+        />
+
+    <ScrollView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".ui.dashboard.DashboardFragment">
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:ignore="MissingConstraints">
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="EUR"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ListView
-                android:id="@+id/list"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:entries="@array/eur" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="SEK"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ListView
-                android:id="@+id/sekList"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:entries="@array/sek" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="USD"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ListView
-                android:id="@+id/usdList"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:entries="@array/usd" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="GBP"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ListView
-                android:id="@+id/gbpList"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:entries="@array/gbp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="CNY"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ListView
-                android:id="@+id/cnyList"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:entries="@array/cny" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="JPY"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ListView
-                android:id="@+id/jpyList"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:entries="@array/jpy" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="KRW"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ListView
-                android:id="@+id/krwList"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:entries="@array/krw" />
-
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

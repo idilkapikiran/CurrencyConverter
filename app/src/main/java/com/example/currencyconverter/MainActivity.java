@@ -1,13 +1,12 @@
 package com.example.currencyconverter;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -19,238 +18,206 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.currencyconverter.databinding.ActivityMainBinding;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.TextView;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-
     Spinner to;
     Spinner from;
-    EditText amount1;
-    Button but;
-
+    EditText amount;
+    Double total;
+    TextView amountResult;
+    Button buttonList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
-
-        amount1 = findViewById(R.id.amount);
+        amountResult = findViewById(R.id.result);
+        amount = findViewById(R.id.convAmount);
         to = findViewById(R.id.to_spinner);
         from = findViewById(R.id.from_spinner);
-        but = findViewById(R.id.button1);
+        buttonList = findViewById(R.id.button1);
 
-        String[] f = {"EUR", "SEK", "USD", "GBP", "CNY", "JPY", "KRW"};
-        ArrayAdapter ad = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, f);
+        String[] currenciesFrom = {"EUR", "USD", "SEK", "GBP", "CNY", "JPY", "KRW"};
+        ArrayAdapter ad = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, currenciesFrom);
         from.setAdapter(ad);
 
-        String[] t = {"EUR", "SEK", "USD", "GBP", "CNY", "JPY", "KRW"};
-        ArrayAdapter ad1 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, t);
-        to.setAdapter(ad1);
+        String[] currenciesTo = {"EUR", "USD", "SEK", "GBP", "CNY", "JPY", "KRW"};
+        ArrayAdapter ad2 = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, currenciesTo);
+        to.setAdapter(ad2);
 
-        but.setOnClickListener(new View.OnClickListener() {
+        amount.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                Double total;
-                Double amount = Double.parseDouble((amount1.getText().toString()));
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-                if (from.getSelectedItem().toString() == to.getSelectedItem().toString()) {
-                    total = amount;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (amount.getText().length() < 1) {
+                    amountResult.setText("");
+                    return;
                 }
-
+                double amountDouble = Double.parseDouble((amount.getText().toString()));
+                if (from.getSelectedItem().toString() == to.getSelectedItem().toString()) {
+                    total = amountDouble;
+                }
                 //EUR
                 if (from.getSelectedItem().toString() == "EUR" && to.getSelectedItem().toString() == "SEK") {
-                    total = amount * 10.11;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 10.11;
                 }
                 if (from.getSelectedItem().toString() == "EUR" && to.getSelectedItem().toString() == "USD") {
-                    total = amount * 1.13;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 1.13;
                 }
                 if (from.getSelectedItem().toString() == "EUR" && to.getSelectedItem().toString() == "GBP") {
-                    total = amount * 0.84;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.84;
                 }
                 if (from.getSelectedItem().toString() == "EUR" && to.getSelectedItem().toString() == "CNY") {
-                    total = amount * 7.19;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 7.19;
                 }
                 if (from.getSelectedItem().toString() == "EUR" && to.getSelectedItem().toString() == "JPY") {
-                    total = amount * 129.24;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 129.24;
                 }
                 if (from.getSelectedItem().toString() == "EUR" && to.getSelectedItem().toString() == "KRW") {
-                    total = amount * 1338.22;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 1338.22;
                 }
 
                 //SEK
                 if (from.getSelectedItem().toString() == "SEK" && to.getSelectedItem().toString() == "EUR") {
-                    total = amount * 0.099;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.099;
                 }
                 if (from.getSelectedItem().toString() == "SEK" && to.getSelectedItem().toString() == "USD") {
-                    total = amount * 0.11;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.11;
                 }
                 if (from.getSelectedItem().toString() == "SEK" && to.getSelectedItem().toString() == "GBP") {
-                    total = amount * 0.083;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.083;
                 }
                 if (from.getSelectedItem().toString() == "SEK" && to.getSelectedItem().toString() == "CNY") {
-                    total = amount * 0.71;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.71;
                 }
                 if (from.getSelectedItem().toString() == "SEK" && to.getSelectedItem().toString() == "JPY") {
-                    total = amount * 12.78;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 12.78;
                 }
                 if (from.getSelectedItem().toString() == "SEK" && to.getSelectedItem().toString() == "KRW") {
-                    total = amount * 132.32;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 132.32;
                 }
 
                 //USD
                 if (from.getSelectedItem().toString() == "USD" && to.getSelectedItem().toString() == "EUR") {
-                    total = amount * 0.89;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.89;
                 }
                 if (from.getSelectedItem().toString() == "USD" && to.getSelectedItem().toString() == "GBP") {
-                    total = amount * 0.75;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.75;
                 }
                 if (from.getSelectedItem().toString() == "USD" && to.getSelectedItem().toString() == "SEK") {
-                    total = amount * 8.98;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 8.98;
                 }
                 if (from.getSelectedItem().toString() == "USD" && to.getSelectedItem().toString() == "CNY") {
-                    total = amount * 6.39;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 6.39;
                 }
                 if (from.getSelectedItem().toString() == "USD" && to.getSelectedItem().toString() == "JPY") {
-                    total = amount * 114.80;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 114.80;
                 }
                 if (from.getSelectedItem().toString() == "USD" && to.getSelectedItem().toString() == "KRW") {
-                    total = amount * 1188.60;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 1188.60;
                 }
 
                 //GBP
                 if (from.getSelectedItem().toString() == "GBP" && to.getSelectedItem().toString() == "EUR") {
-                    total = amount * 1.19;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 1.19;
+
                 }
                 if (from.getSelectedItem().toString() == "GBP" && to.getSelectedItem().toString() == "SEK") {
-                    total = amount * 12.01;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 12.01;
                 }
                 if (from.getSelectedItem().toString() == "GBP" && to.getSelectedItem().toString() == "USD") {
-                    total = amount * 1.34;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 1.34;
                 }
                 if (from.getSelectedItem().toString() == "GBP" && to.getSelectedItem().toString() == "CNY") {
-                    total = amount * 8.54;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 8.54;
                 }
                 if (from.getSelectedItem().toString() == "GBP" && to.getSelectedItem().toString() == "JPY") {
-                    total = amount * 153.50;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 153.50;
                 }
                 if (from.getSelectedItem().toString() == "GBP" && to.getSelectedItem().toString() == "KRW") {
-                    total = amount * 1589.34;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 1589.34;
                 }
 
                 //CNY
                 if (from.getSelectedItem().toString() == "CNY" && to.getSelectedItem().toString() == "EUR") {
-                    total = amount * 0.14;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.14;
                 }
                 if (from.getSelectedItem().toString() == "CNY" && to.getSelectedItem().toString() == "SEK") {
-                    total = amount * 1.41;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 1.41;
                 }
                 if (from.getSelectedItem().toString() == "CNY" && to.getSelectedItem().toString() == "USD") {
-                    total = amount * 0.16;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.16;
                 }
                 if (from.getSelectedItem().toString() == "CNY" && to.getSelectedItem().toString() == "GBP") {
-                    total = amount * 0.12;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.12;
                 }
                 if (from.getSelectedItem().toString() == "CNY" && to.getSelectedItem().toString() == "JPY") {
-                    total = amount * 17.97;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 17.97;
                 }
                 if (from.getSelectedItem().toString() == "CNY" && to.getSelectedItem().toString() == "KRW") {
-                    total = amount * 186.07;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 186.07;
                 }
 
                 //JPY
                 if (from.getSelectedItem().toString() == "JPY" && to.getSelectedItem().toString() == "EUR") {
-                    total = amount * 0.0077;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.0077;
                 }
                 if (from.getSelectedItem().toString() == "JPY" && to.getSelectedItem().toString() == "SEK") {
-                    total = amount * 0.078;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.078;
                 }
                 if (from.getSelectedItem().toString() == "JPY" && to.getSelectedItem().toString() == "USD") {
-                    total = amount * 0.0087;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.0087;
                 }
                 if (from.getSelectedItem().toString() == "JPY" && to.getSelectedItem().toString() == "GBP") {
-                    total = amount * 0.0065;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.0065;
                 }
                 if (from.getSelectedItem().toString() == "JPY" && to.getSelectedItem().toString() == "CNY") {
-                    total = amount * 0.056;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.056;
                 }
                 if (from.getSelectedItem().toString() == "JPY" && to.getSelectedItem().toString() == "KRW") {
-                    total = amount * 10.35;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 10.35;
                 }
 
                 //KRW
                 if (from.getSelectedItem().toString() == "KRW" && to.getSelectedItem().toString() == "EUR") {
-                    total = amount * 0.00075;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.00075;
                 }
                 if (from.getSelectedItem().toString() == "KRW" && to.getSelectedItem().toString() == "SEK") {
-                    total = amount * 0.0076;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.0076;
                 }
                 if (from.getSelectedItem().toString() == "KRW" && to.getSelectedItem().toString() == "USD") {
-                    total = amount * 0.00084;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.00084;
                 }
                 if (from.getSelectedItem().toString() == "KRW" && to.getSelectedItem().toString() == "GBP") {
-                    total = amount * 0.00063;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.00063;
                 }
                 if (from.getSelectedItem().toString() == "KRW" && to.getSelectedItem().toString() == "CNY") {
-                    total = amount * 0.0054;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.0054;
                 }
                 if (from.getSelectedItem().toString() == "KRW" && to.getSelectedItem().toString() == "JPY") {
-                    total = amount * 0.097;
-                    Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_LONG).show();
+                    total = amountDouble * 0.097;
                 }
+                String amountString= Double.toString(total);
+                amountResult.setText(amountString);
             }
         });
+        buttonList.setOnClickListener(v -> openListActivity());
+    }
+    private void openListActivity() {
+        Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
     }
 }
